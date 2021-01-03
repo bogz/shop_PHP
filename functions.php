@@ -1,12 +1,16 @@
 <?php
+define('DB_SERVER', '192.168.0.2');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', 'secret');
+define('DB_NAME', 'cumparaturi');
+
 function pdo_connect_mysql() {
-    // Update the details below with your MySQL details
-    $DATABASE_HOST = '192.168.0.2';
-    $DATABASE_USER = 'root';
-    $DATABASE_PASS = 'secret';
-    $DATABASE_NAME = 'cumparaturi';
+    $DB_SERVER = '192.168.0.2';
+    $DB_USERNAME = 'root';
+    $DB_PASSWORD = 'secret';
+    $DB_NAME = 'cumparaturi';
     try {
-        return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
+        return new PDO('mysql:host=' . $DB_SERVER . ';dbname=' . $DB_NAME . ';charset=utf8', $DB_USERNAME, $DB_PASSWORD);
     } catch (PDOException $exception) {
         // If there is an error with the connection, stop the script and display the error.
         exit('Failed to connect to database!');
@@ -28,10 +32,11 @@ function template_header($title) {
 	<body>
         <header>
             <div class="content-wrapper">
-                <h1>Shopping Cart System</h1>
+                <h1>Magazinul de la Colt</h1>
                 <nav>
                     <a href="index.php">Home</a>
                     <a href="index.php?page=products">Products</a>
+                    <a href="index.php?page=login">Login</a>
                 </nav>
                 <div class="link-icons">
                     <a href="index.php?page=cart">
@@ -51,7 +56,7 @@ function template_footer() {
         </main>
         <footer>
             <div class="content-wrapper">
-                <p>&copy; $year, Shopping Cart System</p>
+                <p>&copy; $year, Magazinul de la Colt</p>
             </div>
         </footer>
         <script src="script.js"></script>

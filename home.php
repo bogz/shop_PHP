@@ -8,11 +8,11 @@ $recently_added_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?=template_header('Home')?>
 
 <div class="featured">
-    <h2>Gadgets</h2>
-    <p>Essential gadgets for everyday use</p>
+    <h2>Briz-brizuri</h2>
+    <p>Gadgeturi de care nu ai nevoie, dar le cumperi</p>
 </div>
 <div class="recentlyadded content-wrapper">
-    <h2>Recently Added Products</h2>
+    <h2>Produse adaugate recent</h2>
     <div class="products">
         <?php foreach ($recently_added_products as $product): ?>
             <a href="index.php?page=product&id=<?=$product['id']?>" class="product">

@@ -20,12 +20,14 @@ function pdo_connect_mysql() {
 function template_header($title) {
     // Get the amount of items in the shopping cart, this will be displayed in the header.
     $num_items_in_cart = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
-    echo <<<EOT
+    $username = (!empty($_SESSION) && isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) ? $_SESSION["username"] : "";
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>$title</title>
+		<title><?=$title?></title>
 		<link href="style.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	</head>
@@ -34,23 +36,32 @@ function template_header($title) {
             <div class="content-wrapper">
                 <h1>Magazinul de la Colt</h1>
                 <nav>
-                    <a href="index.php">Home</a>
-                    <a href="index.php?page=products">Products</a>
-                    <a href="index.php?page=login">Login</a>
+                    <a href="index.php">Acasa</a>
+                    <a href="index.php?page=products">Produse</a>
                 </nav>
                 <div class="link-icons">
+                    <?php if($username) { ?>
+                        <a href="index.php?page=logout">
+                            Logout
+                        </a>
+                    <?php } else { ?>
+                        <a href="index.php?page=login">
+                            Login
+                        </a>
+                    <?php } ?>
                     <a href="index.php?page=cart">
-						<i class="fas fa-shopping-cart"></i>
-						<span>$num_items_in_cart</span>
-					</a>
+                        <i class="fas fa-shopping-cart"></i>
+                        <span><?=$num_items_in_cart?></span>
+                    </a>
                 </div>
             </div>
         </header>
         <main>
-EOT;
+<?php
 }
 // Template footer
-function template_footer() {
+function template_footer()
+{
     $year = date('Y');
     echo <<<EOT
         </main>

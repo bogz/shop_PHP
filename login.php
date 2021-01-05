@@ -15,6 +15,7 @@ if (isset($_REQUEST['submit'])) {
     if ($login) {
         // Inregistrare cu succes
         $_SESSION['username'] = $emailusername;
+        $_SESSION['loggedin'] = true;
         //daca am venit de pe pagina Cart si ne-am logat, ne reintoarcem pe Cart
         if (isset($_SESSION['lastpage']) && ($_SESSION['lastpage'] == 'cart')) {
             $_SESSION['lastpage'] = 'Logout';
